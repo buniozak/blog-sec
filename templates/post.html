@@ -1,0 +1,74 @@
+{% include "header.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{post.img_url}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{post.title}}</h1>
+            <h2 class="subheading">{{post.subtitle}}</h2>
+            <span class="meta">Posted by
+              <a href="#">{{post.author.name}}</a>
+              on {{post.date}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {{ post.body|safe }}
+          <hr>
+             {% if current_user== 1: %}
+           <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{{url_for('edit_post', post_id=post.id)}}">Edit Post</a>
+          </div>
+          {% endif %}
+             {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+
+    {{ ckeditor.load(pkg_type="basic") }}
+                    {{ render_form(form) }}
+<!--           Comments Area -->
+          <div class="col-lg-8 col-md-12 mx-auto comment">
+
+
+        {% for comment in comments %}
+              {% if comment.post_id==posta_id%}
+                     <div class="commenterImage">
+</div>
+                    <div class="commentText">
+
+
+                            {{ comment.text|safe}}
+                      <span class="date sub-text"> {{ current_user.name}}</span>
+
+                    </div>
+            {%endif%}
+
+
+              {%endfor%}
+            </div>
+
+
+          </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+{% include "footer.html" %}
