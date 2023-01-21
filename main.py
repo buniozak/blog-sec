@@ -27,6 +27,7 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 ##CONFIGURE TABLES
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
