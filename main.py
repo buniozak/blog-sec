@@ -2,7 +2,7 @@ from flask_gravatar import Gravatar
 from functools import wraps
 from flask import abort
 from flask import Flask, render_template, redirect, url_for, flash,request
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from datetime import date
 
@@ -17,7 +17,7 @@ from flask_gravatar import Gravatar
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
-bootstrap = Bootstrap5(app)
+bootstrap = Bootstrap(app)
 
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
